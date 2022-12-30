@@ -1,0 +1,51 @@
+﻿@using Infrastructuur.Models
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<StudentEntity>
+
+<div class="text-center">
+    <h1 class="display-4">Students Exercises</h1>
+</div>
+<form asp-action="Index">
+ <div class="form-group">
+        <input class="form-control"  type="text" name="searchInput"/>
+    </div>
+    <select class="form-control" name="filter">
+    <option>Select filter</option> 
+    <option>FirstName</option> 
+    <option>LastName</option> 
+      <option>Points</option> 
+</select>
+    <button class="btn btn-primary">Search</button>
+</form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+      <th scope="col">Points</th>
+    </tr>
+  </thead>
+  <tbody>
+     
+     @foreach (var student in Model)
+       {
+               <tr>
+      <th scope="row">@student.Id</th>
+      <td>@student.FirstName</td>
+      <td>@student.LastName</td>
+
+                @if(student.Points >= 50)
+                {
+                          <td style="color:green">@student.Points</td>
+                } else
+                {      <td style="color:red">@student.Points</td>
+                }
+            </tr>
+        }
+ 
+
+  </tbody>
+</table>

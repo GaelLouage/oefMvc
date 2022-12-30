@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "OefOpASPMvc/1.0.0": {
+        "dependencies": {
+          "Infrastructuur": "1.0.0"
+        },
+        "runtime": {
+          "OefOpASPMvc.dll": {}
+        }
+      },
+      "Infrastructuur/1.0.0": {
+        "runtime": {
+          "Infrastructuur.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "OefOpASPMvc/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Infrastructuur/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
