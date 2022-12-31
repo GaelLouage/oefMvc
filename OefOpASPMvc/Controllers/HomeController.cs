@@ -1,4 +1,5 @@
 ﻿using Infrastructuur.Files;
+using Infrastructuur.Models;
 using Microsoft.AspNetCore.Mvc;
 using OefOpASPMvc.Models;
 using System.Diagnostics;
@@ -9,7 +10,7 @@ namespace OefOpASPMvc.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly Data _studentsData;
-
+        private static List<BmiEntity> bmis = new List<BmiEntity>();
 
         public HomeController(ILogger<HomeController> logger, Data studentsData)
         {
@@ -44,6 +45,22 @@ namespace OefOpASPMvc.Controllers
             return View(students);
         }
 
+        public ActionResult Bmi()
+        {
+            ViewData["bmis"] = bmis;
+            return View();
+        }
+        [HttpPost]
+        public ActionResult BmiPost(BmiEntity bmiVm, string weight, string length)
+        {
+            weight = weight.Replace(",", ".");
+            length = length.Replace(",", ".");
+            bmiVm.Weight = double.Parse(weight);
+            bmiVm.Length = double.Parse(length);
+            bmiVm.CalculateBmi();
+            bmis.Add(bmiVm);
+            return RedirectToAction(nameof(Bmi));
+        }
         public IActionResult Privacy()
         {
             return View();
@@ -55,4 +72,4 @@ namespace OefOpASPMvc.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
-}
+} 

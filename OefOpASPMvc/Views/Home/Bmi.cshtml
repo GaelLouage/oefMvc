@@ -1,0 +1,46 @@
+﻿@using Infrastructuur.Models
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    var bmis = ViewData["bmis"] as List<BmiEntity>;
+}
+@model BmiEntity
+
+<form asp-action="BmiPost">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" type="text" asp-for="Name" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Weight"></label>
+        <input class="form-control" type="number" step=".01" name="weight" required />
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Length"></label>
+        <input class="form-control" type="number" step=".01" name="length" required />
+    </div>
+
+    <button class="btn btn-primary">Search</button>
+</form>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">bmi</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var bmi in bmis)
+        {
+            <tr>
+                <td>@bmi.ToString()</td>
+            </tr>
+        }
+    </tbody>
+</table>
